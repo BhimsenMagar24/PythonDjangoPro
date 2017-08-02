@@ -1,0 +1,53 @@
+
+{% extends "chain/base.html" %}
+
+{% block title %}Data{% endblock %}
+
+{% block body %}
+
+<div class="" id="Left_Side">
+        {% if mysensors %}
+
+              <h3>Here is your Data Sir --  <br> </h3>
+              {% for nodes in mysensors %}
+
+                    {% if nodes.data_set.all %}
+                        {% for  node in nodes.data_set.all %}
+                          <ul class="list-group">
+                            <li class="list-group-item">
+                                  {{node.data}}
+                                  <a href ="{% url 'chain:DeleteData'  node.id %}"  class="btn btn-primary btn-sm" role="button"> Delete Data </a>
+
+                            </li>
+                          </ul>
+
+                        {% endfor %}
+
+                    {%endif%}
+
+              {% endfor %}
+
+        {% else %}
+
+            No data In this sensor
+
+        {% endif %}
+
+</div>
+
+{% endblock %}
+{% block body_right %}
+
+<div class="" id="Right_Side">
+
+  <h3> Here are soemething that can help you </h3>
+    <p>
+        We made a help page to help you throughout.
+        We will gonna put some suggestion for you here.
+    </p>
+</div>
+
+
+
+
+{% endblock body_right %}
